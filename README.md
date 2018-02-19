@@ -176,3 +176,23 @@ Finished closing pool
 ```
 
 The VON Agent has connected to the network!
+
+# Using the indy-dev image
+
+I've added another docker file to make life easier for myself by building a development environment
+which will let me write and run python code that uses `von-agent`.
+
+### Building the image
+
+```
+docker build -f Dockerfile-dev -t indy-dev .
+```
+
+### Running the image
+
+Assuming you already ran `./manage start_nodes` and the nodes are connected to the `vonconnector_default`
+bridge network in docker, you can run the following command to stand up your dev environment:
+
+```
+docker run -it --net vonconnector_default -v $PWD:/root/code indy-dev bash
+```

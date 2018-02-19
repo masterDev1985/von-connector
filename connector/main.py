@@ -6,7 +6,7 @@ import asyncio
 
 
 async def main():
-    pool = NodePool('test', '.indy/pool_transactions_sandbox_genesis')
+    pool = NodePool('test', '/root/.indy/pool_transactions_sandbox_genesis')
 
     print('\n\n\nOpening pool...\n\n\n')
     await pool.open()
