@@ -19,18 +19,22 @@ services:
   # Nodes
   # 
   node1:
+    image: 'connector_base'
     build: .
     command: 'bash -c ''./scripts/start_node.sh 1'''
     
   node2:
+    image: 'connector_base'
     build: .
     command: 'bash -c ''./scripts/start_node.sh 2'''
 
   node3:
+    image: 'connector_base'
     build: .
     command: 'bash -c ''./scripts/start_node.sh 3'''
     
   node4:
+    image: 'connector_base'
     build: .
     command: 'bash -c ''./scripts/start_node.sh 4'''
     

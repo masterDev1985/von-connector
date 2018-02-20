@@ -3,11 +3,11 @@ FROM ubuntu:16.04
 ARG uid=1000
 ARG indy_stream=master
 
-ARG indy_plenum_ver=1.1.143
+ARG indy_plenum_ver=1.2.237
 ARG indy_anoncreds_ver=1.0.32
-ARG indy_node_ver=1.1.159
-ARG python3_indy_crypto_ver=0.1.6
-ARG indy_crypto_ver=0.1.6
+ARG indy_node_ver=1.2.297
+ARG python3_indy_crypto_ver=0.2.0
+ARG indy_crypto_ver=0.2.0
 
 ENV LC_ALL="C.UTF-8"
 ENV LANG="C.UTF-8"
@@ -74,3 +74,9 @@ ADD --chown=indy:indy ./scripts /home/indy/scripts
 
 # Add our python scripts
 ADD --chown=indy:indy ./connector /home/indy/von-connector
+
+# We have to set a network name in the indy config because reasons
+
+RUN awk '{if (index($1, "NETWORK_NAME") != 0) {print("NETWORK_NAME = \"sandbox\"")} else print($0)}' /etc/indy/indy_config.py> /tmp/indy_config.py
+RUN mv /tmp/indy_config.py /etc/indy/indy_config.py
+
